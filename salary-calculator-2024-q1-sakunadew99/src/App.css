@@ -1,0 +1,10 @@
+.app {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.salary-form,
+.salary-summary {
+  flex: 1;
+}
