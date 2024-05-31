@@ -1,12 +1,10 @@
-/* src/components/SalaryForm.css */
-
 .salary-form {
     position: relative;
     border: 1px solid #e0e0e0;
     padding: 20px;
     border-radius: 8px;
     background-color: #fff;
-    max-width: 600px;
+    max-width: 680px;
     margin: 20px auto;
   }
   
@@ -89,3 +87,17 @@
     background-color: #cc0000;
   }
   
+
+  .add-button {
+    
+    color: blue;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .add-button:hover {
+    color: #007bff;
+  }

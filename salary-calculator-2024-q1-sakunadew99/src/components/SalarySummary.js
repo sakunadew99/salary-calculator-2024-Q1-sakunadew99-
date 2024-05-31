@@ -8,7 +8,14 @@ const SalarySummary = () => {
 
   const totalEarnings = basicSalary + earnings.reduce((acc, curr) => acc + curr.amount, 0);
   const totalDeductions = deductions.reduce((acc, curr) => acc + curr.amount, 0);
-  const netSalary = totalEarnings - totalDeductions;
+
+  
+  const employerEPF = basicSalary * 0.12;
+  const employerETF = basicSalary * 0.03;
+
+  const epfEarnings = earnings.filter(e => e.epf).reduce((acc, curr) => acc + curr.amount, 0);
+  const totalEPF = (basicSalary + epfEarnings) * 0.08;
+  const netSalary = totalEarnings - totalDeductions - totalEPF;
 
   return (
     <div className="salary-summary">
@@ -27,7 +34,7 @@ const SalarySummary = () => {
       </div>
       <div className="summary-item">
         <span>Employee EPF (8%):</span>
-        <span>{(basicSalary * 0.08).toFixed(2)}</span>
+        <span>{totalEPF.toFixed(2)}</span>
       </div>
       <div className="summary-item">
         <span>APIT:</span>
@@ -41,15 +48,15 @@ const SalarySummary = () => {
         <h3>Contribution from the Employer</h3>
         <div className="summary-item">
           <span>Employer EPF (12%):</span>
-          <span>{(basicSalary * 0.12).toFixed(2)}</span>
+          <span>{employerEPF.toFixed(2)}</span>
         </div>
         <div className="summary-item">
           <span>Employer ETF (3%):</span>
-          <span>{(basicSalary * 0.03).toFixed(2)}</span>
+          <span>{employerETF.toFixed(2)}</span>
         </div>
         <div className="summary-item">
           <span>CTC (Cost to Company):</span>
-          <span>{(basicSalary + (basicSalary * 0.12) + (basicSalary * 0.03)).toFixed(2)}</span>
+          <span>{(basicSalary + employerEPF + employerETF).toFixed(2)}</span>
         </div>
       </div>
     </div>
