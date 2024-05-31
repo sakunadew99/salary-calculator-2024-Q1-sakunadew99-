@@ -1,36 +1,48 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { SalaryContext } from '../context/SalaryContext';
 import './SalaryForm.css';
 
 const SalaryForm = () => {
   const { state, dispatch } = useContext(SalaryContext);
-  const [newEarning, setNewEarning] = useState('');
-  const [newEarningAmount, setNewEarningAmount] = useState(0);
-  const [isEpfAllowed, setIsEpfAllowed] = useState(false);
-  const [newDeduction, setNewDeduction] = useState('');
-  const [newDeductionAmount, setNewDeductionAmount] = useState(0);
 
   const handleBasicSalaryChange = (e) => {
     dispatch({ type: 'UPDATE_BASIC_SALARY', payload: Number(e.target.value) });
   };
 
-  const handleAddEarning = () => {
+  const handleEarningChange = (index, key, value) => {
     dispatch({
-      type: 'ADD_EARNING',
-      payload: { name: newEarning, amount: Number(newEarningAmount), epf: isEpfAllowed },
+      type: 'UPDATE_EARNING',
+      payload: { index, key, value },
     });
-    setNewEarning('');
-    setNewEarningAmount(0);
-    setIsEpfAllowed(false);
+  };
+
+  const handleDeductionChange = (index, key, value) => {
+    dispatch({
+      type: 'UPDATE_DEDUCTION',
+      payload: { index, key, value },
+    });
+  };
+
+  const handleDeleteEarning = (index) => {
+    dispatch({
+      type: 'DELETE_EARNING',
+      payload: index,
+    });
+  };
+
+  const handleDeleteDeduction = (index) => {
+    dispatch({
+      type: 'DELETE_DEDUCTION',
+      payload: index,
+    });
+  };
+
+  const handleAddEarning = () => {
+    dispatch({ type: 'ADD_EARNING' });
   };
 
   const handleAddDeduction = () => {
-    dispatch({
-      type: 'ADD_DEDUCTION',
-      payload: { name: newDeduction, amount: Number(newDeductionAmount) },
-    });
-    setNewDeduction('');
-    setNewDeductionAmount(0);
+    dispatch({ type: 'ADD_DEDUCTION' });
   };
 
   const handleReset = () => {
@@ -47,59 +59,51 @@ const SalaryForm = () => {
       </label>
       <div className="earnings">
         <h2>Earnings</h2>
+        <p>Allowance, Fixed Allowance, Bonus and etc.</p>
         {state.earnings.map((earning, index) => (
           <div key={index} className="earning-item">
-            <input type="text" value={earning.name} readOnly />
-            <input type="text" value={earning.amount} readOnly />
+            <input
+              type="text"
+              value={earning.name}
+              onChange={(e) => handleEarningChange(index, 'name', e.target.value)}
+            />
+            <input
+              type="text"
+              value={earning.amount}
+              onChange={(e) => handleEarningChange(index, 'amount', Number(e.target.value))}
+            />
             <label>
               EPF/ETF:
-              <input type="checkbox" checked={earning.epf} readOnly />
+              <input
+                type="checkbox"
+                checked={earning.epf}
+                onChange={(e) => handleEarningChange(index, 'epf', e.target.checked)}
+              />
             </label>
+            <button onClick={() => handleDeleteEarning(index)}>Delete</button>
           </div>
         ))}
-        <input
-          type="text"
-          placeholder="Earning Name"
-          value={newEarning}
-          onChange={(e) => setNewEarning(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Earning Amount"
-          value={newEarningAmount}
-          onChange={(e) => setNewEarningAmount(e.target.value)}
-        />
-        <label>
-          EPF Allowed:
-          <input
-            type="checkbox"
-            checked={isEpfAllowed}
-            onChange={() => setIsEpfAllowed(!isEpfAllowed)}
-          />
-        </label>
-        <button onClick={handleAddEarning}>Add Earning</button>
+        <p className="add-button" onClick={handleAddEarning}>+ Add new Allowance</p>
       </div>
       <div className="deductions">
         <h2>Deductions</h2>
+        <p>Salary Advances, Loan Deductions and all</p>
         {state.deductions.map((deduction, index) => (
           <div key={index} className="deduction-item">
-            <input type="text" value={deduction.name} readOnly />
-            <input type="text" value={deduction.amount} readOnly />
+            <input
+              type="text"
+              value={deduction.name}
+              onChange={(e) => handleDeductionChange(index, 'name', e.target.value)}
+            />
+            <input
+              type="text"
+              value={deduction.amount}
+              onChange={(e) => handleDeductionChange(index, 'amount', Number(e.target.value))}
+            />
+            <button onClick={() => handleDeleteDeduction(index)}>Delete</button>
           </div>
         ))}
-        <input
-          type="text"
-          placeholder="Deduction Name"
-          value={newDeduction}
-          onChange={(e) => setNewDeduction(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Deduction Amount"
-          value={newDeductionAmount}
-          onChange={(e) => setNewDeductionAmount(e.target.value)}
-        />
-        <button onClick={handleAddDeduction}>Add Deduction</button>
+        <p className="add-button" onClick={handleAddDeduction}>+ Add new Reduction</p>
       </div>
     </div>
   );
