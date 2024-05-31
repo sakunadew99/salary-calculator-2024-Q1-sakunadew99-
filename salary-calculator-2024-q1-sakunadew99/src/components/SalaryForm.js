@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { SalaryContext } from '../context/SalaryContext';
 import './SalaryForm.css';
+import deleteIcon from '../assets/delete-icon.png'; 
+import resetIcon from '../assets/reset-icon.png'; 
 
 const SalaryForm = () => {
   const { state, dispatch } = useContext(SalaryContext);
@@ -51,15 +53,17 @@ const SalaryForm = () => {
 
   return (
     <div className="salary-form">
-      <button className="reset-button" onClick={handleReset}>Reset</button>
+      <button className="reset-button" onClick={handleReset}>
+        <img src={resetIcon} alt="Reset" className="button-icon" /> Reset
+      </button>
       <h1>Calculate Your Salary</h1>
       <label>
-        Basic Salary:
+      <h2>Basic Salary</h2>
         <input type="text" value={state.basicSalary} onChange={handleBasicSalaryChange} />
       </label>
       <div className="earnings">
         <h2>Earnings</h2>
-        <p>Allowance, Fixed Allowance, Bonus and etc.</p>
+        <p className='description'>Allowance, Fixed Allowance, Bonus and etc.</p>
         {state.earnings.map((earning, index) => (
           <div key={index} className="earning-item">
             <input
@@ -72,22 +76,27 @@ const SalaryForm = () => {
               value={earning.amount}
               onChange={(e) => handleEarningChange(index, 'amount', Number(e.target.value))}
             />
+            <button className="delete-button" onClick={() => handleDeleteEarning(index)}>
+              <img src={deleteIcon} alt="Delete"  />
+            </button>
             <label>
-              EPF/ETF:
-              <input
+            <input
                 type="checkbox"
                 checked={earning.epf}
                 onChange={(e) => handleEarningChange(index, 'epf', e.target.checked)}
               />
+              EPF/ETF
+              
             </label>
-            <button onClick={() => handleDeleteEarning(index)}>Delete</button>
+            
           </div>
         ))}
-        <p className="add-button" onClick={handleAddEarning}>+ Add new Allowance</p>
+        <p className="add-button" onClick={handleAddEarning}>+ Add New Allowance</p>
       </div>
+      <div className="separator"></div>
       <div className="deductions">
         <h2>Deductions</h2>
-        <p>Salary Advances, Loan Deductions and all</p>
+        <p className='description'>Salary Advances, Loan Deductions and all</p>
         {state.deductions.map((deduction, index) => (
           <div key={index} className="deduction-item">
             <input
@@ -100,10 +109,12 @@ const SalaryForm = () => {
               value={deduction.amount}
               onChange={(e) => handleDeductionChange(index, 'amount', Number(e.target.value))}
             />
-            <button onClick={() => handleDeleteDeduction(index)}>Delete</button>
+            <button className="delete-button" onClick={() => handleDeleteDeduction(index)}>
+            <img src={deleteIcon} alt="Delete" />
+            </button>
           </div>
         ))}
-        <p className="add-button" onClick={handleAddDeduction}>+ Add new Reduction</p>
+        <p className="add-button" onClick={handleAddDeduction}>+ Add New Deduction</p>
       </div>
     </div>
   );
