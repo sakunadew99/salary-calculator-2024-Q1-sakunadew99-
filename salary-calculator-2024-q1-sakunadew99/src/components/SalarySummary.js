@@ -20,42 +20,46 @@ const SalarySummary = () => {
   return (
     <div className="salary-summary">
       <h2>Your Salary</h2>
+      <div className="summary-topic">
+        <span>Items</span>
+        <span>Amount</span>
+      </div>
       <div className="summary-item">
-        <span>Basic Salary:</span>
+        <span>Basic Salary</span>
         <span>{basicSalary.toFixed(2)}</span>
       </div>
       <div className="summary-item">
-        <span>Gross Earning:</span>
+        <span>Gross Earning</span>
         <span>{totalEarnings.toFixed(2)}</span>
       </div>
       <div className="summary-item">
-        <span>Gross Deduction:</span>
-        <span>{totalDeductions.toFixed(2)}</span>
+        <span>Gross Deduction</span>
+        <span>- {totalDeductions.toFixed(2)}</span>
       </div>
       <div className="summary-item">
-        <span>Employee EPF (8%):</span>
-        <span>{totalEPF.toFixed(2)}</span>
+        <span>Employee EPF (8%)</span>
+        <span>- {totalEPF.toFixed(2)}</span>
       </div>
       <div className="summary-item">
-        <span>APIT:</span>
-        <span>{((totalEarnings - totalDeductions) * 0.02).toFixed(2)}</span>
+        <span>APIT</span>
+        <span>- {((totalEarnings - totalDeductions) * 0.02).toFixed(2)}</span>
       </div>
       <div className="net-salary">
-        <span>Net Salary (Take Home):</span>
+        <span>Net Salary (Take Home)</span>
         <span>{netSalary.toFixed(2)}</span>
       </div>
       <div className="employer-contributions">
-        <h3>Contribution from the Employer</h3>
+        <p className='contribution'>Contribution from the Employer</p>
         <div className="summary-item">
-          <span>Employer EPF (12%):</span>
+          <span>Employer EPF (12%)</span>
           <span>{employerEPF.toFixed(2)}</span>
         </div>
         <div className="summary-item">
-          <span>Employer ETF (3%):</span>
+          <span>Employer ETF (3%)</span>
           <span>{employerETF.toFixed(2)}</span>
         </div>
         <div className="summary-item">
-          <span>CTC (Cost to Company):</span>
+          <span>CTC (Cost to Company)</span>
           <span>{(basicSalary + employerEPF + employerETF).toFixed(2)}</span>
         </div>
       </div>
