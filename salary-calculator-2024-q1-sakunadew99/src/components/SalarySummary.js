@@ -57,7 +57,7 @@ const SalarySummary = () => {
           <span>Employer ETF (3%)</span>
           <span>{employerETF.toFixed(2)}</span>
         </div>
-        <div className="summary-item">
+        <div className="summary-item-ctc">
           <span>CTC (Cost to Company)</span>
           <span>{(basicSalary + employerEPF + employerETF).toFixed(2)}</span>
         </div>
