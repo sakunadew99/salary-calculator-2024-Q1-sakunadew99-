@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { SalaryProvider } from '../context/SalaryContext';
 import SalarySummary from '../components/SalarySummary';
+import { SalaryProvider } from '../context/SalaryContext';
 
 test('displays correct salary summary', () => {
   const { getByText } = render(
