@@ -61,7 +61,7 @@ const SalaryForm = () => {
         <h2>Basic Salary</h2>
         <input 
           type="number" 
-          value={state.basicSalary} 
+          value={state.basicSalary || ''} 
           onChange={handleBasicSalaryChange} 
           placeholder="Amount" 
         />
@@ -79,11 +79,10 @@ const SalaryForm = () => {
             />
             <input
               type="number"
-              value={earning.amount}
+              value={earning.amount || ''}
               onChange={(e) => handleEarningChange(index, 'amount', Number(e.target.value))}
               placeholder="Amount"
-              inputMode="numeric"
-              pattern="[0-9]*"
+              
             />
             <button className="delete-button" onClick={() => handleDeleteEarning(index)}>
               <img src={deleteIcon} alt="Delete" />
@@ -114,7 +113,7 @@ const SalaryForm = () => {
             />
             <input
               type="number"
-              value={deduction.amount}
+              value={deduction.amount || ''}
               onChange={(e) => handleDeductionChange(index, 'amount', Number(e.target.value))}
               placeholder="Amount"
             />
