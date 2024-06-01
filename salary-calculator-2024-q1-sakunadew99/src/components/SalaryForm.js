@@ -59,7 +59,12 @@ const SalaryForm = () => {
       <h1>Calculate Your Salary</h1>
       <label>
         <h2>Basic Salary</h2>
-        <input type="text" value={state.basicSalary} onChange={handleBasicSalaryChange} />
+        <input 
+          type="number" 
+          value={state.basicSalary} 
+          onChange={handleBasicSalaryChange} 
+          placeholder="Amount" 
+        />
       </label>
       <div className="earnings">
         <h2>Earnings</h2>
@@ -70,11 +75,15 @@ const SalaryForm = () => {
               type="text"
               value={earning.name}
               onChange={(e) => handleEarningChange(index, 'name', e.target.value)}
+              placeholder="Pay Details (Title)"
             />
             <input
-              type="text"
+              type="number"
               value={earning.amount}
               onChange={(e) => handleEarningChange(index, 'amount', Number(e.target.value))}
+              placeholder="Amount"
+              inputMode="numeric"
+              pattern="[0-9]*"
             />
             <button className="delete-button" onClick={() => handleDeleteEarning(index)}>
               <img src={deleteIcon} alt="Delete" />
@@ -101,11 +110,13 @@ const SalaryForm = () => {
               type="text"
               value={deduction.name}
               onChange={(e) => handleDeductionChange(index, 'name', e.target.value)}
+              placeholder="Pay Details (Title)"
             />
             <input
-              type="text"
+              type="number"
               value={deduction.amount}
               onChange={(e) => handleDeductionChange(index, 'amount', Number(e.target.value))}
+              placeholder="Amount"
             />
             <button className="delete-button" onClick={() => handleDeleteDeduction(index)}>
               <img src={deleteIcon} alt="Delete" />
