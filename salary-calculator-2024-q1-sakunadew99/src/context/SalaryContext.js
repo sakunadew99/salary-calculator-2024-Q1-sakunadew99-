@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 
 const SalaryContext = createContext();
 
@@ -48,6 +48,8 @@ const salaryReducer = (state, action) => {
       };
     case 'RESET_FORM':
       return initialState;
+    case 'LOAD_STATE':
+      return action.payload || initialState;
     default:
       return state;
   }
@@ -55,6 +57,17 @@ const salaryReducer = (state, action) => {
 
 const SalaryProvider = ({ children }) => {
   const [state, dispatch] = useReducer(salaryReducer, initialState);
+
+  useEffect(() => {
+    const savedState = localStorage.getItem('salaryState');
+    if (savedState) {
+      dispatch({ type: 'LOAD_STATE', payload: JSON.parse(savedState) });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('salaryState', JSON.stringify(state));
+  }, [state]);
 
   return (
     <SalaryContext.Provider value={{ state, dispatch }}>

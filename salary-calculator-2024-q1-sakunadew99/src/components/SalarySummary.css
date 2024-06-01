@@ -1,58 +1,81 @@
 .salary-summary {
-    border: 1px solid var(--border-color);
-    padding: 20px;
-    border-radius: 8px;
-    background-color: var(--secondary-color);
-    max-width: 480px;
-    margin: 20px auto;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+  max-width: 480px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+.salary-summary h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: var(--black-color);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.summary-item span {
+  font-size: 16px;
+}
+
+.summary-topic {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.summary-topic span {
+  font-size: 14px;
+  color: var(--gray-color);
+}
+
+.net-salary {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+}
+
+.employer-contributions {
+  margin-top: 20px;
+}
+
+.employer-contributions p {
+  font-size: 14px;
+  color: var(--gray-color);
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  .salary-summary {
+    padding: 15px;
+    max-width: 90%; 
   }
-  
+
   .salary-summary h2 {
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: var(--black-color);
+    font-size: 18px;
   }
-  
-  .summary-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .summary-item span {
-    font-size: 16px;
-  }
-  
-  .summary-topic {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
+
+  .summary-item span,
   .summary-topic span {
     font-size: 14px;
-    color: var(--gray-color);
   }
-  
+
   .net-salary {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid var(--border-color);
-    box-sizing: border-box;
-  }
-  
-  .employer-contributions {
-    margin-top: 20px;
-  }
-  
-  .employer-contributions p {
     font-size: 14px;
-    color: var(--gray-color);
   }
-  
-  
-  
+
+  .employer-contributions p {
+    font-size: 12px;
+  }
+}

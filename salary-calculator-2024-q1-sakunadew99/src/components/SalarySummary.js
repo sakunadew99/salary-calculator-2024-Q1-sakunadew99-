@@ -9,7 +9,6 @@ const SalarySummary = () => {
   const totalEarnings = basicSalary + earnings.reduce((acc, curr) => acc + curr.amount, 0);
   const totalDeductions = deductions.reduce((acc, curr) => acc + curr.amount, 0);
 
-  
   const employerEPF = basicSalary * 0.12;
   const employerETF = basicSalary * 0.03;
 

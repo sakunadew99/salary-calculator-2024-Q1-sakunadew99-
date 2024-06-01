@@ -1,4 +1,4 @@
-:root{
+:root {
   --primary-color: #FAFAFA;
   --secondary-color: #FFFFFF;
   --black-color: #000000;
@@ -7,11 +7,11 @@
   --hover-color: #007bff;
   --border-color: #E0E0E0;
   --dark-color: #94979c;
-
 }
 
 .app {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px 0;
 }
@@ -19,4 +19,14 @@
 .salary-form,
 .salary-summary {
   flex: 1;
+  box-sizing: border-box; 
+}
+
+@media (max-width: 768px) {
+  .salary-form,
+  .salary-summary {
+    flex: 0 0 100%;
+    display: block;
+    margin: 10px; 
+  }
 }

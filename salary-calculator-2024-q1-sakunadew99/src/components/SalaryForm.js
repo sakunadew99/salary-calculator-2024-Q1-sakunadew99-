@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { SalaryContext } from '../context/SalaryContext';
 import './SalaryForm.css';
-import deleteIcon from '../assets/delete-icon.png'; 
-import resetIcon from '../assets/reset-icon.png'; 
+import deleteIcon from '../assets/delete-icon.png';
+import resetIcon from '../assets/reset-icon.png';
 
 const SalaryForm = () => {
   const { state, dispatch } = useContext(SalaryContext);
@@ -58,7 +58,7 @@ const SalaryForm = () => {
       </button>
       <h1>Calculate Your Salary</h1>
       <label>
-      <h2>Basic Salary</h2>
+        <h2>Basic Salary</h2>
         <input type="text" value={state.basicSalary} onChange={handleBasicSalaryChange} />
       </label>
       <div className="earnings">
@@ -77,18 +77,16 @@ const SalaryForm = () => {
               onChange={(e) => handleEarningChange(index, 'amount', Number(e.target.value))}
             />
             <button className="delete-button" onClick={() => handleDeleteEarning(index)}>
-              <img src={deleteIcon} alt="Delete"  />
+              <img src={deleteIcon} alt="Delete" />
             </button>
             <label>
-            <input
+              <input
                 type="checkbox"
                 checked={earning.epf}
                 onChange={(e) => handleEarningChange(index, 'epf', e.target.checked)}
               />
               EPF/ETF
-              
             </label>
-            
           </div>
         ))}
         <p className="add-button" onClick={handleAddEarning}>+ Add New Allowance</p>
@@ -110,7 +108,7 @@ const SalaryForm = () => {
               onChange={(e) => handleDeductionChange(index, 'amount', Number(e.target.value))}
             />
             <button className="delete-button" onClick={() => handleDeleteDeduction(index)}>
-            <img src={deleteIcon} alt="Delete" />
+              <img src={deleteIcon} alt="Delete" />
             </button>
           </div>
         ))}
